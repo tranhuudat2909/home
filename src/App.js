@@ -26,18 +26,19 @@ function App() {
           <Router>
               <Routes>
                   <Route
-                      exact
-                      // path="/"  khi Ở local
-                      path="/home/" // khi push lên github
+                      path="/"
                       element={<Home />}
                   />
 
                   <Route
-                  // path="/about"  khi Ở local
-                      path="/home/about"
+                      path="/about"
                       element={<About />}
                   />
 
+                  <Route
+                      path="*"
+                      element={<Navigate to="/" />}
+                  />
               </Routes>
         </Router>
         </header>
