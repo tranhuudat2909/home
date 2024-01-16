@@ -210,6 +210,8 @@ const handleSort = () => {
                             </label>
                             <span>Auto</span>
                       </div>
+                              {/* Hiển thị chế độ ở đây */}
+                        <p>Chế độ hiện tại: {mode}</p>
                 </div>  
 
           <div className='right-form'>
