@@ -1,0 +1,199 @@
+body {
+  background-image: url('https://media.istockphoto.com/id/932066990/vi/vec-to/iot-h%C3%ACnh-%E1%BA%A3nh-minh-h%E1%BB%8Da.jpg?s=1024x1024&w=is&k=20&c=f0T59-FTrs04bNmuGmkLK7IlCM_7bJjWhPzulREig28='); /* Thay đổi 'duong-dan-den-hinh-nen.jpg' thành đường dẫn đến hình nền bạn muốn sử dụng */
+  background-size: contain; /* Đảm bảo hình nền che phủ toàn bộ phần nền */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.cont {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px;
+  
+}
+
+.form-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Adjust the width of the form container */
+}
+
+.left-form{
+  border: 1px solid #ccc; /* chỉnh vẽ border */
+  padding: 20px; /* chỉnh độ rộng giữa nội dung và khung background*/
+  width: 40%; /* chỉnh độ rộng khung form */
+  display: flex;
+  flex-direction: column;
+  text-align: center; /* chỉnh nội dung form về center */
+  background-color: snow;
+
+ /* Thay đổi giá trị này để đặt khoảng trắng bên trái của form */
+ 
+  margin-right: auto; 
+  margin-left: 0px; 
+}
+
+.right-form{
+  border: 1px solid #ccc; /* chỉnh vẽ border */
+  padding: 20px; /* chỉnh độ rộng giữa nội dung và khung background*/
+  width: 40%; /* chỉnh độ rộng khung form */
+  display: flex;
+  flex-direction: column;
+  text-align: center; /* chỉnh nội dung form về center */
+  background-color: snow;
+
+ /* Thay đổi giá trị này để đặt khoảng trắng bên phải của form */
+
+  margin-left: auto; 
+  margin-right: 0px; 
+}
+
+
+
+label {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+
+/* Thêm kiểu cho thanh trượt */
+input[type="range"] {
+  width: 100%;
+}
+
+
+/* Thêm kiểu cho table */
+table {
+  border-collapse: collapse;
+  width: 50%;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: yellowgreen;
+}
+
+
+/* Thêm kiểu cho nút nhấn submit */
+
+input[type="submit"] {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  min-width: 10px; /* Đặt độ rộng tối thiểu cho nút */
+  box-sizing: border-box; /* Bảo đảm rằng padding không làm thay đổi kích thước của phần tử */
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+
+/* Thêm kiểu cho nút nhấn chuyển trang*/
+.button {
+  margin-top: 30px;
+  padding: 10px;
+  background-color: greenyellow;
+  color: pink;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+  align-self: center;
+}
+
+
+/* Thêm kiểu cho các tiêu đề của bảng */
+.tieude-chinh {
+  margin-top: 0;
+  font-size: 60px;
+  text-align: center;
+  color: black; 
+  font-weight: bold;
+  background-color: greenyellow;
+}
+
+.tieude-bang{
+  font-size: 40px;
+  text-align: center;
+}
+
+
+
+/* Thêm kiểu cho toggle switch */
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.toggle-switch span {
+  flex: 1;
+  text-align: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {     
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}

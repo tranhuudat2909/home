@@ -1,0 +1,66 @@
+.cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    justify-content: space-between;
+  }
+  
+  
+  
+  label {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  
+  input[type="range"] {
+    width: 100%;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 50%;
+    margin-top: 20px;
+    background-color: snow;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: yellowgreen;
+  }
+  
+  input[type="submit"] {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    min-width: 10px; /* Đặt độ rộng tối thiểu cho nút */
+    box-sizing: border-box; /* Bảo đảm rằng padding không làm thay đổi kích thước của phần tử */
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  .button {
+    margin-top: 30px;
+    padding: 10px; /* Tăng kích thước padding để làm cho nút lớn hơn */
+    background-color: greenyellow;
+    color: pink;
+    border: none;
+    cursor: pointer;
+    font-weight: bold; /* Đặt font chữ in đậm */
+    font-size: 20px; /* Tăng kích thước font chữ */
+  }
+  
+  
+  
+  
