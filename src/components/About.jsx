@@ -110,7 +110,7 @@ const handleSort = () => {
       </table>
 
       <button className='button'>
-        <Link to="/">Home</Link>
+        <Link to="/home/">Home</Link>
       </button>               
 
             
