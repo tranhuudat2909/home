@@ -263,7 +263,7 @@ useEffect(() => {
 
       {/* NÚT ĐỂ CHUYỂN TRANG WEB */}
       <button className='button'>
-        <Link to="/about">GO TO DATA</Link>
+        <Link to="/home/about">GO TO DATA</Link>
       </button>        
            
     </div>

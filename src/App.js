@@ -27,11 +27,13 @@ function App() {
               <Routes>
                   <Route
                       exact
-                      path="/home/"
+                      // path="/"  khi Ở local
+                      path="/home/" // khi push lên github
                       element={<Home />}
                   />
 
                   <Route
+                  // path="/about"  khi Ở local
                       path="/home/about"
                       element={<About />}
                   />
