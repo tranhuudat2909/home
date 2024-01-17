@@ -12,42 +12,36 @@ function Home() {
   const [data, setData] = useState([]);
   const [sortedData, setSortedData] = useState([]);
   const [sortOrder, setSortOrder] = useState('asc');
-  const [mode, setMode] = useState('manual'); // 'manual' or 'auto'
+  const [mode, setMode] = useState(() => {
+    // Truy xuất chế độ từ localStorage hoặc đặt giá trị mặc định
+    return localStorage.getItem('mode') || 'manual';
+  }); // 'manual' hoặc 'auto'
+
+
+
+
+  const ws = new WebSocket('ws://tranhuudat2909.github.io/home');
+
+  useEffect(() => {
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.type === 'mode') {
+        setMode(data.mode);
+        localStorage.setItem('mode', data.mode);
+      }
+    };
+  }, [ws]);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // Hàm chuyển đổi giữa chế độ 'manual' và 'auto'
- 
-  useEffect(() => {
-    // Fetch initial mode from MongoDB
-    const fetchInitialMode = async () => {
-      try {
-        const response = await axios.get("https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-zsywh/endpoint/get_auto");
-        setMode(response.data.mode || 'manual');
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchInitialMode();
-  }, []);
-
-  // Function to update mode on MongoDB
-  const updateMode = async (newMode) => {
-    try {
-      await axios.post("https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-zsywh/endpoint/auto", {
-        mode: newMode,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  // Function to toggle between 'manual' and 'auto' modes
   const toggleMode = () => {
     const newMode = mode === 'manual' ? 'auto' : 'manual';
     setMode(newMode);
-    updateMode(newMode); // Update mode on MongoDB
+    localStorage.setItem('mode', newMode);
+
+    // Gửi thay đổi chế độ đến server
+    ws.send(JSON.stringify({ type: 'mode', mode: newMode }));
   };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,23 +78,23 @@ const handleSort = () => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // HÀM DÙNG ĐỂ POST CHẾ ĐỘ AUTO HAY MANUAL TỰ ĐỘNG KHÔNG BẤM NÚT
-// useEffect(() => {
-//   const sendModeData = async () => {
-//     try {
-//       await axios.post(
-//         'https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-zsywh/endpoint/auto',
-//         {
-//           mode: mode === 'auto' ? 'auto' : 'manual',
-//         }
-//       );
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
+useEffect(() => {
+  const sendModeData = async () => {
+    try {
+      await axios.post(
+        'https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-zsywh/endpoint/auto',
+        {
+          mode: mode === 'auto' ? 'auto' : 'manual',
+        }
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-//   // Call the function initially and whenever 'mode' changes
-//   sendModeData();
-// }, [mode]);
+  // Call the function initially and whenever 'mode' changes
+  sendModeData();
+}, [mode]);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -210,8 +204,6 @@ const handleSort = () => {
                             </label>
                             <span>Auto</span>
                       </div>
-                              {/* Hiển thị chế độ ở đây */}
-                        <p>Chế độ hiện tại: {mode}</p>
                 </div>  
 
           <div className='right-form'>
@@ -297,3 +289,5 @@ const handleSort = () => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export default Home;
+
+    
