@@ -17,31 +17,14 @@ function Home() {
     return localStorage.getItem('mode') || 'manual';
   }); // 'manual' hoặc 'auto'
 
-
-
-
-  const ws = new WebSocket('ws://tranhuudat2909.github.io/home');
-
-  useEffect(() => {
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.type === 'mode') {
-        setMode(data.mode);
-        localStorage.setItem('mode', data.mode);
-      }
-    };
-  }, [ws]);
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // Hàm chuyển đổi giữa chế độ 'manual' và 'auto'
   const toggleMode = () => {
     const newMode = mode === 'manual' ? 'auto' : 'manual';
     setMode(newMode);
+    // Lưu chế độ vào localStorage
     localStorage.setItem('mode', newMode);
-
-    // Gửi thay đổi chế độ đến server
-    ws.send(JSON.stringify({ type: 'mode', mode: newMode }));
   };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -289,5 +272,3 @@ useEffect(() => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export default Home;
-
-    
