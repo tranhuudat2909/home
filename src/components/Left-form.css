@@ -1,0 +1,65 @@
+.toggle-buttons {
+  display: flex;
+  align-items: center;
+  /* border: 1px solid #ccc; */
+}
+
+/* Thêm kiểu cho start - stop*/
+.start-stop{
+    /* border: 1px solid #ccc;  */
+  }
+  
+   /* Thêm kiểu cho manual-auto*/
+   .start-button.active {
+    background-color: greenyellow;
+    color: black; 
+    /* Bạn có thể thay đổi các thuộc tính khác tùy thuộc vào yêu cầu thiết kế của bạn */
+  }
+
+  .stop-button.active {
+    background-color: red;
+    color: black; 
+    /* Bạn có thể thay đổi các thuộc tính khác tùy thuộc vào yêu cầu thiết kế của bạn */
+  }
+
+  .start-button {
+    padding: 10px 20px; /* Adjust the padding as needed for your desired size */
+    font-size: 16px;    /* Adjust the font size as needed */
+  
+    margin-right: 100px;
+  }
+  
+  .stop-button{
+    padding: 10px 20px; /* Adjust the padding as needed for your desired size */
+    font-size: 16px;    /* Adjust the font size as needed */
+  
+    margin-left: 100px;
+  }
+  
+
+  /* Thêm kiểu cho manual-auto*/
+  .manual-button.active ,.auto-button.active {
+    background-color: greenyellow;
+    color: black; 
+    /* Bạn có thể thay đổi các thuộc tính khác tùy thuộc vào yêu cầu thiết kế của bạn */
+  }
+  
+  .manual-button {
+    padding: 10px 20px; /* Adjust the padding as needed for your desired size */
+    font-size: 16px;    /* Adjust the font size as needed */
+  
+    margin-right: 0px;
+  }
+
+  .auto-button {
+    padding: 10px 20px; /* Adjust the padding as needed for your desired size */
+    font-size: 16px;    /* Adjust the font size as needed */
+  
+    margin-left: 0px;
+  }
+
+
+
+  .mode-label {
+    font-size: 20px; /* You can adjust the font size as needed */
+  }

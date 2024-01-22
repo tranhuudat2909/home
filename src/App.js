@@ -26,6 +26,7 @@ function App() {
           <Router>
               <Routes>
                   <Route
+                      exact
                       path="/"
                       element={<Home />}
                   />
@@ -35,10 +36,6 @@ function App() {
                       element={<About />}
                   />
 
-                  <Route
-                      path="*"
-                      element={<Navigate to="/" />}
-                  />
               </Routes>
         </Router>
         </header>

@@ -4,7 +4,8 @@ import './About.css';
 import { Link } from "react-router-dom";
 
 const About = () => {
-
+  
+  const [data, setData] = useState([]);
   const [sortedData, setSortedData] = useState([]);
   const [sortOrder, setSortOrder] = useState('asc');
 
@@ -69,9 +70,6 @@ const handleSort = () => {
     return () => clearInterval(intervalId);
   }, [sortOrder]);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-    const [data, setData] = useState([]);
 
 
     return (
