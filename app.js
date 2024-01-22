@@ -19,6 +19,7 @@ app.post("/",async(req,res)=>{
     const {servo3} = req.body
     const {servo4} = req.body
     const {mode} = req.body
+    const {control} = req.body
     
 
     const data={
@@ -28,6 +29,7 @@ app.post("/",async(req,res)=>{
         servo3:servo3,
         servo4:servo4,
         mode:mode,
+        control:control,
     }
 
     await collection.insertMany([data])

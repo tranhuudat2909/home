@@ -30,6 +30,10 @@ const newSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    control:{
+        type:String,
+        required:true
+    },
 
 })
 

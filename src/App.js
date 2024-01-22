@@ -8,15 +8,6 @@ import {
   Navigate,
 } from "react-router-dom";
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <Home/>
-//       </header>
-//     </div>
-//   );
-// }
 
 
 function App() {
@@ -35,7 +26,10 @@ function App() {
                       path="/about"
                       element={<About />}
                   />
-
+                  <Route
+                    path="*"
+                    element={<Navigate to="/" />}
+                  />
               </Routes>
         </Router>
         </header>
