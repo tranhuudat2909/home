@@ -1,9 +1,9 @@
 body {
-  background-image: url('https://media.istockphoto.com/id/932066990/vi/vec-to/iot-h%C3%ACnh-%E1%BA%A3nh-minh-h%E1%BB%8Da.jpg?s=1024x1024&w=is&k=20&c=f0T59-FTrs04bNmuGmkLK7IlCM_7bJjWhPzulREig28='); /* Thay đổi 'duong-dan-den-hinh-nen.jpg' thành đường dẫn đến hình nền bạn muốn sử dụng */
-  background-size: contain; /* Đảm bảo hình nền che phủ toàn bộ phần nền */
+  /* background-image: url('https://e0.pxfuel.com/wallpapers/413/334/desktop-wallpaper-iot-internet-of-things-u.jpg'); 
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center;
+  background-position: center; */
+  background-color: snow;
 }
 
 .cont {
@@ -21,7 +21,7 @@ body {
 }
 
 .left-form{
-  border: 1px solid #ccc; /* chỉnh vẽ border */
+  /* border: 1px solid #ccc;  */
   padding: 20px; /* chỉnh độ rộng giữa nội dung và khung background*/
   width: 40%; /* chỉnh độ rộng khung form */
   
@@ -37,7 +37,7 @@ body {
 }
 
 .right-form{
-  border: 1px solid #ccc; /* chỉnh vẽ border */
+  /* border: 1px solid #ccc;  */
   padding: 20px; /* chỉnh độ rộng giữa nội dung và khung background*/
   width: 40%; /* chỉnh độ rộng khung form */
   display: flex;
@@ -60,9 +60,11 @@ label {
 
 /* Thêm kiểu cho table */
 table {
-  border-collapse: collapse;
-  width: 50%;
-  margin-top: 20px;
+  border-collapse: collapse;  
+  width: 1000px;
+  margin-top: 0; /* Đặt giá trị margin-top thành 0 để bỏ khoảng trắng phía trên */
+  margin-bottom: 20px; /* Thêm khoảng trắng phía dưới nếu cần */
+  background-color: snow;
 }
 
 th, td {

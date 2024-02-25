@@ -8,8 +8,6 @@ import {
   Navigate,
 } from "react-router-dom";
 
-
-
 function App() {
   return (
     <div className="App">
@@ -30,6 +28,7 @@ function App() {
                     path="*"
                     element={<Navigate to="/" />}
                   />
+
               </Routes>
         </Router>
         </header>

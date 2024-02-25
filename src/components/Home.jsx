@@ -24,26 +24,40 @@ function Home() {
 
 // NÚT MANUAL
 const setModeManual = () => {
+  console.log('Setting mode to manual');
   setMode('manual');
+  setControl('stop');
   localStorage.setItem('mode', 'manual');
 };
 
 // NÚT AUTO
 const setModeAuto = () => {
+  console.log('Setting mode to auto');
   setMode('auto');
   localStorage.setItem('mode', 'auto');
 };
 
 // NÚT START 
 const setStartSystem = () => {
-  setControl('start');
-  localStorage.setItem('control', 'start');
+  if (mode === 'auto') {
+    // Hiển thị cảnh báo nếu chế độ là 'manual'
+    
+    setControl('start');
+    localStorage.setItem('control', 'start');
+  } 
+  if (mode === 'manual') {
+    // setControl('start');
+    // localStorage.setItem('control', 'start');
+    
+    window.alert('Không thể "start" hệ thống khi chế độ là "manual"');
+    console.log('hien thi thong bao');
+  }
 };
 
 // NÚT STOP 
 const setStopSystem = () => {
   setControl('stop');
-  localStorage.setItem('control', 'stop');
+  localStorage.setItem('control', 'stop');        
 };
 
 
@@ -101,7 +115,7 @@ useEffect(() => {
   fetchDataFromMongoDB();
 
   // Thiết lập interval để cập nhật dữ liệu mỗi 5 giây (hoặc bất kỳ khoảng thời gian nào bạn muốn)
-  const intervalId = setInterval(fetchDataFromMongoDB, 3000);
+  const intervalId = setInterval(fetchDataFromMongoDB, 5000);
 
   // Clear interval khi component unmount để tránh memory leaks
   return () => clearInterval(intervalId);
@@ -110,70 +124,6 @@ useEffect(() => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
- // HÀM SẮP XẾP GIÁ TRỊ DỰA TRÊN giatri1 HAY CỘT 1
- const handleSort = () => {
-  const sortedDataCopy = [...sortedData];
-  sortedDataCopy.sort((a, b) => (sortOrder === 'asc' ? a.giatri1.localeCompare(b.giatri1) : b.giatri1.localeCompare(a.giatri1)));
-  setSortedData(sortedDataCopy);
-  setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-};
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  // Lấy dữ liệu từ localStorage khi trang được tải lần đầu
-  useEffect(() => {
-    const storedData = localStorage.getItem('myData');
-    if (storedData) {
-      const parsedData = JSON.parse(storedData);
-      setData(parsedData);
-      setSortedData([...parsedData]); // Initialize sortedData with the initial data
-    }
-  }, []);
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  // Lấy dữ liệu từ MongoDB
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-zsywh/endpoint/GET_REACT");
-        const modifiedData = response.data.map(item => {
-          const qrValues = item.qr.split('/');
-          return {
-            qr: item.qr,
-            giatri1: qrValues[0] || '',
-            giatri2: qrValues[1] || '',
-            giatri3: qrValues[2] || '',
-            giatri4: qrValues[3] || '',
-          };
-        });
-
-        const sortedDataCopy = [...modifiedData];
-        sortedDataCopy.sort((a, b) => (sortOrder === 'asc' ? a.giatri1.localeCompare(b.giatri1) : b.giatri1.localeCompare(a.giatri1)));
-
-        setData(modifiedData);
-        setSortedData(sortedDataCopy);
-
-        localStorage.setItem('myData', JSON.stringify(modifiedData));
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-    const intervalId = setInterval(fetchData, 3000);
-
-    return () => clearInterval(intervalId);
-  }, [sortOrder]);
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -182,43 +132,49 @@ useEffect(() => {
 const submit = async (e) => {
   e.preventDefault();
 
-  try {
-    await axios.post("https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-zsywh/endpoint/react", {
-      servo1,
-      servo2,
-      servo3,
-      servo4,
-    });
-
-    // Hiển thị thông báo khi dữ liệu được gửi thành công
-    window.alert('Dữ liệu đã được gửi thành công!');
-
-
-    const response = await axios.get("https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-zsywh/endpoint/GET_REACT");
-    const modifiedData = response.data.map(item => {
-      const qrValues = item.qr.split('/');
-      return {
-        qr: item.qr,
-        giatri1: qrValues[0] || '',
-        giatri2: qrValues[1] || '',
-        giatri3: qrValues[2] || '',
-        giatri4: qrValues[3] || '',
-      };
-    });
-
-    const sortedDataCopy = [...modifiedData];
-    sortedDataCopy.sort((a, b) => (sortOrder === 'asc' ? a.giatri1.localeCompare(b.giatri1) : b.giatri1.localeCompare(a.giatri1)));
-
-    setData(modifiedData);
-    setSortedData(sortedDataCopy);
-    localStorage.setItem('myData', JSON.stringify(modifiedData));
-
-  } catch (error) {
-    console.error(error);
-    // Hiển thị thông báo khi có lỗi
-    window.alert('Có lỗi khi gửi dữ liệu!');
+  // Kiểm tra nếu chế độ là 'auto', hiển thị cảnh báo và không gửi dữ liệu
+  if (mode === 'auto') {
+    window.alert('Không thể gửi dữ liệu khi chế độ là "auto".');
+    return;
   }
-};
+  else{
+    try {
+      await axios.post("https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-zsywh/endpoint/react", {
+        servo1,
+        servo2,
+        servo3,
+        servo4,
+      });
+  
+      // Hiển thị thông báo khi dữ liệu được gửi thành công
+      window.alert('Dữ liệu đã được gửi thành công!');
+  
+      const response = await axios.get("https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-zsywh/endpoint/GET_REACT");
+      const modifiedData = response.data.map(item => {
+        const qrValues = item.qr.split('/');
+        return {
+          qr: item.qr,
+          giatri1: qrValues[0] || '',
+          giatri2: qrValues[1] || '',
+          giatri3: qrValues[2] || '',
+          giatri4: qrValues[3] || '',
+        };
+      });
+  
+      const sortedDataCopy = [...modifiedData];
+      sortedDataCopy.sort((a, b) => (sortOrder === 'asc' ? a.giatri1.localeCompare(b.giatri1) : b.giatri1.localeCompare(a.giatri1)));
+  
+      setData(modifiedData);
+      setSortedData(sortedDataCopy);
+      localStorage.setItem('myData', JSON.stringify(modifiedData));
+  
+    } catch (error) {
+      console.error(error);
+      // Hiển thị thông báo khi có lỗi
+      window.alert('Có lỗi khi gửi dữ liệu!');
+    }
+  };
+  }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -235,18 +191,18 @@ const submit = async (e) => {
       <div className='form-container'>
         <div className='left-form'>
           <h1 className='tieude-bang'> BẢNG ĐIỀU KHIỂN TỰ ĐỘNG</h1>
-          <p className='mode-label'>CHỌN CHẾ ĐỘ ĐIỀU KHIỂN: </p>
           <div className='toggle-buttons'>
+          <p className='mode-label'>CHỌN CHẾ ĐỘ ĐIỀU KHIỂN: </p>
             <button onClick={setModeManual} className={`manual-button ${mode === 'manual' ? 'active' : ''}`}>       
-              Manual
+              MANUAL
             </button>
             <button onClick={setModeAuto} className={`auto-button ${mode === 'auto' ? 'active' : ''}`}>
-              Auto
+              AUTO
             </button>
           </div>
 
           <div className='start-stop'>
-            <p className='mode-label'>NÚT ĐIỀU KHIỂN </p>
+            <p className='mode-label'>NÚT ĐIỀU KHIỂN CHẾ ĐỘ TỰ ĐỘNG: </p>
             <button onClick={setStartSystem} className={`start-button ${control === 'start' ? 'active' : ''}`}>
               START
             </button>
@@ -305,27 +261,6 @@ const submit = async (e) => {
                   <input type="submit" onClick={submit} value="SEND DATA " />
         </div>
       </div>
-      
-      <table>
-          <thead>
-            <tr>
-              <th>SAN PHAM</th>
-              <th>GIA TIEN</th>
-              <th>CHAT LUONG</th>
-              <th>KHOI LUONG</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sortedData.map((user, index) => (
-              <tr key={index}>
-                <td>{user.giatri1}</td>
-                <td>{user.giatri2}</td>
-                <td>{user.giatri3}</td>
-                <td>{user.giatri4}</td>
-              </tr>
-            ))}
-          </tbody>
-      </table>
 
 
       {/* NÚT ĐỂ CHUYỂN TRANG WEB */}
@@ -339,5 +274,7 @@ const submit = async (e) => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export default Home;
+
+    
 
     

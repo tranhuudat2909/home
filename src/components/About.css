@@ -1,66 +1,100 @@
 .cont {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
-    justify-content: space-between;
-  }
-  
-  
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin: 20px; */
+  justify-content: space-between;
+}
+
+
+  /* form container chung */
+.container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+
+  /* form label */
   label {
     margin-bottom: 10px;
     font-size: 20px;
   }
+
+
+
+  /* form chung o ben trái */
+.form-chung-1{
+  /* margin-top: 50px; */
+  margin-left: 10px;
+  /* border: 1px solid #ccc; */
+  padding: 40px;
   
-  input[type="range"] {
-    width: 100%;
-  }
-  
-  table {
-    border-collapse: collapse;
-    width: 50%;
-    margin-top: 20px;
-    background-color: snow;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  th {
-    background-color: yellowgreen;
-  }
-  
-  input[type="submit"] {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    min-width: 10px; /* Đặt độ rộng tối thiểu cho nút */
-    box-sizing: border-box; /* Bảo đảm rằng padding không làm thay đổi kích thước của phần tử */
-  }
-  
-  input[type="submit"]:hover {
-    background-color: #45a049;
-  }
-  
-  .button {
-    margin-top: 30px;
-    padding: 10px; /* Tăng kích thước padding để làm cho nút lớn hơn */
-    background-color: greenyellow;
-    color: pink;
-    border: none;
-    cursor: pointer;
-    font-weight: bold; /* Đặt font chữ in đậm */
-    font-size: 20px; /* Tăng kích thước font chữ */
-  }
-  
-  
-  
-  
+}
+
+.select-option {
+  width: 200px; /* Điều chỉnh kích thước của khung select tại đây */
+  font-size: inherit; /* Giữ kích thước font của các tùy chọn không thay đổi */
+  text-align: center; /* Căn giữa văn bản trong các tùy chọn */
+  line-height: 2; /* Điều chỉnh khoảng cách giữa các dòng để căn giữa văn bản */
+  font-size: 15px;
+  margin-bottom: 40px;
+}
+
+.filter-form {
+  display: flex;
+  flex-direction: column;
+  border-color: green;
+}
+.count{
+  margin-top: 30px;
+}
+
+.button {
+  margin-top: 30px;
+  padding: 10px; /* Tăng kích thước padding để làm cho nút lớn hơn */
+  background-color: greenyellow;
+  color: pink;
+  border: none;
+  cursor: pointer;
+  font-weight: bold; /* Đặt font chữ in đậm */
+  font-size: 20px; /* Tăng kích thước font chữ */
+  margin-left: 80px;
+}
+
+/* form chung ở bên phải */
+.form-chung-2 {
+/* border: 1px solid #ccc; */
+/* margin-left: 20px; 
+width: 50%; 
+margin-top: 0px; */
+
+margin-top: 0px;
+padding: 100px;
+}
+
+table {
+border-collapse: collapse;  
+width: 1000px;
+margin-top: 0px;
+background-color: snow;
+}
+
+th, td {
+border: 1px solid #ddd;
+padding: 10px;
+text-align: center;
+}
+
+th {
+background-color: yellowgreen;
+}
+
+.bang-san-pham{
+  margin-top: 0px;
+  margin-bottom: 10px;
+  margin-left: 450px;
+  font-size: 20px;
+  font-weight: bold; /* Đặt font chữ in đậm */
+}
